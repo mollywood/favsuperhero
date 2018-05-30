@@ -2,13 +2,6 @@ let filmsInfoDiv = document.querySelector('#filmsInfoDiv')
 
 let posts = []
 
-fetch('http://www.omdbapi.com/?s=spiderman&apikey=cc1eb02f')
-.then(function(response) {
-  return response.json()
-}).then(function(posts){
-  console.log(posts)
-})
-
 function populateFilms(filmsToDisplay) {
   filmsInfoDiv.innerHTML = ''
   filmsToDisplay.forEach(function(posts) {
@@ -19,5 +12,10 @@ function populateFilms(filmsToDisplay) {
 }
 
 addEventListener('load', function(){
-  populateFilms(posts)
+  fetch('http://www.omdbapi.com/?s=spiderman&apikey=cc1eb02f')
+  .then(function(response) {
+    return response.json()
+  }).then(function(posts){
+    console.log(posts)
+  }).then(populateFilms(posts))
 })
