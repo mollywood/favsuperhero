@@ -8,8 +8,17 @@ function populateFilms(posts) {
   filmsInfoDiv.innerHTML = ''
   filmsToDisplay.forEach(function(posts) {
     let filmsInfo =
-    `<h3>${posts.Title}</h3>
-    <img src=${posts.Poster}>`
+    `
+    <div class="card" style="width: 18rem">
+      <img class="card-img-top" src=${posts.Poster} alt="Superhero poster">
+      <div class="card-body">
+        <h3 class="card-title">${posts.Title}</h3>
+        <p class="card-text">${posts.Year}</p>
+        <a href="#" class="btn btn-primary">Holy More Info, Batman!</a>
+      </div>
+    </div>
+    <br>
+    `
     filmsInfoDiv.innerHTML += filmsInfo
   })
 }
@@ -22,17 +31,16 @@ addEventListener('load', function(){
     console.log(posts.Search)
     posts = posts
     populateFilms(posts)
-
   })
 })
 
 addEventListener('click', function(){
-  // console.log(posts)
-  // fetch(`http://www.omdbapi.com/?i=${posts.imdbID}&apikey=cc1eb02f`)
-  // .then(function(response) {
-  //   return response.json()
-  // }).then(function(film){
-  //   console.log(film)
-  // })
-
+   console.log(posts.Search)
+   posts = posts
+   fetch(`http://www.omdbapi.com/?i=${posts.imdbID}&apikey=cc1eb02f`)
+   .then(function(response) {
+     return response.json()
+   }).then(function(film){
+     console.log(film)
+   })
 })
